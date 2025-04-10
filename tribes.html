@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Ethnic Mosaic of the Congo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    h1.title {
+      color: red;
+      font-size: 3em;
+      margin-top: 40px;
+      text-shadow: 0 0 10px red;
+    }
+
+    .cross-image {
+      display: block;
+      margin: 40px auto;
+      width: 400px;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cross-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px red;
+    }
+
+    .file-icons {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .file-icon {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .file-icon img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      border: 2px solid red;
+      background-color: #111;
+      padding: 8px;
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+
+    .file-icon:hover img {
+      box-shadow: 0 0 15px red;
+      transform: scale(1.05);
+    }
+
+    .tooltip {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: red;
+      color: black;
+      padding: 5px 10px;
+      font-size: 0.9rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      font-weight: bold;
+    }
+
+    .file-icon:hover .tooltip {
+      opacity: 1;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .popup-box {
+      background-color: #111;
+      border: 2px solid red;
+      padding: 30px;
+      color: white;
+      text-align: center;
+      border-radius: 10px;
+      width: 600px;
+      max-width: 90%;
+      box-shadow: 0 0 20px red;
+    }
+
+    .popup-title {
+      font-size: 1.8rem;
+      color: red;
+      margin-bottom: 20px;
+      font-weight: bold;
+      text-shadow: 0 0 8px red;
+    }
+
+    .popup-box img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: contain;
+      border: 2px solid #555;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .close-button {
+      background-color: red;
+      color: white;
+      border: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .close-button:hover {
+      background-color: #a00;
+    }
+
+    .return-button {
+      margin: 60px auto 40px;
+      display: block;
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    #return-lock {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      font-size: 1.8rem;
+      color: red;
+      pointer-events: none;
+    }
+
+    .red-pulse {
+      animation: pulse-red 2s infinite;
+    }
+
+    @keyframes pulse-red {
+      0% { box-shadow: 0 0 0px red; }
+      50% { box-shadow: 0 0 20px red; }
+      100% { box-shadow: 0 0 0px red; }
+    }
+
+    @keyframes swirl-bg {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="title">The Ethnic Mosaic of the Congo</h1>
+
+  <img 
+    class="cross-image"
+    src="https://e7.pngegg.com/pngimages/932/521/png-clipart-mandala-color-pages-coloring-book-ethnic-group-drawing-mandala-logo-monochrome-thumbnail.png"
+    alt="Tribal Symbol"
+    onclick="openPopup()"
+  />
+
+  <div class="file-icons">
+    <div class="file-icon" onclick="openPopup('Conflicts between tribal and ethnic groups', 'https://via.placeholder.com/500x250?text=Tribal+Lands', 'A hand-drawn map outlining the traditional lands of various ethnic groups.', 'folder1')">
+      <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" />
+      <span class="tooltip">Conflicts between tribal and ethnic groups</span>
+    </div>
+
+    <div class="file-icon" onclick="openPopup('Oral Traditions', 'https://via.placeholder.com/500x250?text=Oral+Traditions', 'Recorded oral history about migration, leadership, and spiritual beliefs.', 'folder2')">
+      <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" />
+      <span class="tooltip">Oral Traditions</span>
+    </div>
+
+    <div class="file-icon" onclick="openPopup('Tribal Relations', 'https://via.placeholder.com/500x250?text=Relations', 'Historical insights into tribal alliances, rivalries, and Belgian interference.', 'folder3')">
+      <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" />
+      <span class="tooltip">Tribal Relations</span>
+    </div>
+  </div>
+
+  <div id="popup" class="popup-overlay">
+    <div class="popup-box">
+      <div class="popup-title" id="typewriter-title"></div>
+      <img id="popup-image" src="" alt="Popup Image" />
+      <p id="popup-description"></p>
+      <button class="close-button" onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <div id="return-wrapper" style="position: relative; display: inline-block;">
+    <button class="return-button" onclick="confirmReturn()" id="return-button" disabled>
+      Return
+      <span id="return-lock">🔒</span>
+    </button>
+  </div>
+
+  <div id="unlock-popup" class="popup-overlay">
+    <div class="popup-box" style="border-color: lime; box-shadow: 0 0 20px lime;">
+      <p style="color: lime; font-weight: bold;">✅ You have found the key to go back.</p>
+    </div>
+  </div>
+
+  <div id="intro-popup" class="popup-overlay">
+    <div class="popup-box red-pulse">
+      <p style="font-size: 1.2rem; line-height: 1.6;">
+        The Congo is a rich tapestry of ethnic groups...<br><br>
+        But beware: history has shaped and shaken their paths.<br>
+        Dig through the tribal archives to uncover the truth.
+      </p>
+      <button class="close-button" onclick="closeIntro()">Begin</button>
+    </div>
+  </div>
+
+  <div id="return-confirmation" class="popup-overlay">
+    <div class="popup-box">
+      <p>You're about to return to the present.<br>Do you really wish to proceed?</p>
+      <button class="close-button" onclick="startReturn()">Yes</button>
+      <button class="close-button" onclick="cancelReturn()">No</button>
+    </div>
+  </div>
+
+  <div id="return-overlay" class="popup-overlay" style="flex-direction: column; background: radial-gradient(circle at center, #000 30%, #1a1a1a 60%, #000 90%); display: none;">
+    <div id="wormhole-return" style="
+      position: absolute;
+      width: 300%;
+      height: 300%;
+      top: -100%;
+      left: -100%;
+      background: repeating-radial-gradient(
+        circle,
+        #2c3e50 0%,
+        #34495e 5%,
+        #1c2833 10%,
+        #2c3e50 15%
+      );
+      animation: swirl-bg 2s linear infinite;
+      z-index: 1;
+    "></div>
+    <div style="position: relative; z-index: 2;">
+      <p id="return-text">Returning to the present...</p>
+      <div id="return-progress-container" style="
+        width: 300px;
+        height: 20px;
+        background: #333;
+        border: 2px solid red;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 0 auto;
+      ">
+        <div id="return-bar" style="width: 0%; height: 100%; background: red; transition: width 2s linear;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    localStorage.setItem("unlockedColonial", "true");
+
+    let openedFiles = {
+      cross: false,
+      folder1: false,
+      folder2: false,
+      folder3: false
+    };
+
+    function typeWriter(text, elementId, speed = 50) {
+      const el = document.getElementById(elementId);
+      el.textContent = "";
+      let i = 0;
+      const interval = setInterval(() => {
+        el.textContent += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(interval);
+      }, speed);
+    }
+
+    function openPopup(title = "File# 19i239%62??2762:The divide and rule strategy of Belgium", image = "", description = "Belgium not only exploited Congo’s resources but also deliberately divided its ethnic groups. This strategy allowed the colonial government to maintain control by favoring particular groups over others. However, this created deep mistrust and resentment among the Congolese people. Even after independence, these divisions did not disappear and later contributed to major conflicts, such as the Rwandan Genocide. As Mbaku explains, “European colonization fostered and exploited ethnicity in Africa with dire consequences for state formation” (Mbaku, 2017, p.25). ", source = "cross") {
+      document.getElementById("popup").style.display = "flex";
+      typeWriter(title, "typewriter-title");
+      document.getElementById("popup-image").src = image;
+      document.getElementById("popup-description").textContent = description;
+      openedFiles[source] = true;
+      checkAllFilesOpened();
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    function confirmReturn() {
+      if (document.getElementById("return-button").disabled) {
+        alert("You need to unlock all the files first!");
+      } else {
+        document.getElementById("return-confirmation").style.display = "flex";
+      }
+    }
+
+    function cancelReturn() {
+      document.getElementById("return-confirmation").style.display = "none";
+    }
+
+    function startReturn() {
+      document.getElementById("return-confirmation").style.display = "none";
+      document.getElementById("return-overlay").style.display = "flex";
+
+      const bar = document.getElementById("return-bar");
+      const text = document.getElementById("return-text");
+
+      setTimeout(() => {
+        bar.style.width = "100%";
+      }, 100);
+
+      setTimeout(() => {
+        text.textContent = "Return Complete!";
+      }, 2000);
+
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 2700);
+    }
+
+    function checkAllFilesOpened() {
+      if (openedFiles.cross && openedFiles.folder1 && openedFiles.folder2 && openedFiles.folder3) {
+        document.getElementById("return-lock").style.display = "none";
+        document.getElementById("return-button").disabled = false;
+
+        const popup = document.getElementById("unlock-popup");
+        popup.style.display = "flex";
+        setTimeout(() => {
+          popup.style.display = "none";
+        }, 3000);
+      }
+    }
+
+    function closeIntro() {
+      document.getElementById("intro-popup").style.display = "none";
+      localStorage.setItem("introSeenTribes", "true");
+    }
+
+    window.onload = function () {
+      const seenIntro = localStorage.getItem("introSeenTribes");
+      if (!seenIntro) {
+        document.getElementById("intro-popup").style.display = "flex";
+      } else {
+        document.getElementById("intro-popup").style.display = "none";
+      }
+    };
+  </script>
+</body>
+</html>

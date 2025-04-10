@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Past and Present of the Congo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="title">The Past and Present of the Congo</h1>
+
+    <div class="symbol-column">
+      <!-- Cross Symbol (Christianity) -->
+      <div class="symbol" onclick="navigateTo('christianity.html')">
+        <img src="https://pngimg.com/d/christian_cross_PNG23024.png"  width="800" height="800">
+        <div class="symbol-description">Christianity's influence across the Congo</div>
+      </div>
+
+      <div class="symbol locked" data-page="tribes.html">
+        <img src="https://thumb.ac-illust.com/9c/9c0beb068d946ac633fbc2cf5abbca2e_t.jpeg" alt="Colonial Crown">
+        <div class="lock-overlay">🔒</div>
+        <p class="symbol-description">How Belgium's divide and rule initiated ethnic conflicts</p>
+      </div>
+      
+      <!-- Tribes (locked initially) -->
+      <div class="symbol locked" data-page="colonial.html">
+        <img src="https://freedesignfile.com/image/preview/4467/crown-black-and-white-clipart.png" alt="Tribes">
+        <div class="lock-overlay">🔒</div>
+        <p class="symbol-description">How Belgium's colonial rule impacted Congo today</p>
+      </div>
+     
+    </div>
+      </div>
+  </div>
+ 
+
+
+  <!-- Confirmation Dialog -->
+  <div id="confirmation-screen">
+    <div id="confirmation-box">
+      <p>You will be traveling into the past to explore.<br>Do you really wish to proceed?</p>
+      <div class="button-group">
+        <button id="confirm-yes">Yes</button>
+        <button id="confirm-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Time Travel Overlay -->
+  <div id="time-travel-overlay">
+    <div id="wormhole"></div>
+    <div id="wormhole-overlay-content">
+      <p id="travel-text">Traveling to the past...</p>
+      <div id="progress-container">
+        <div id="progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Locked Message Screen -->
+  <div id="locked-message">
+    <div id="locked-box">
+      <p id="locked-text">Visit the other gates that are open to unlock this gate.</p>
+      <button id="close-locked">Close</button>
+    </div>
+  </div>
+  <button id="reset-progress">Reset Progress</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
